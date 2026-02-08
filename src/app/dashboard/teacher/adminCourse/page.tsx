@@ -1,0 +1,121 @@
+"use client";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+interface Course {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  logo: string;
+  startDate: string;
+}
+
+const adminCourse = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
+  const fetchCourses = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/courses/all");
+      setCourses(res.data);
+    } catch (error) {
+      console.error("Error fetching courses", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <p className="text-center mt-10">Loading courses...</p>;
+
+  return (
+    <>
+      <div className="max-w-6xl mx-auto px-4 py-10">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="font-semibold text-lg text-gray-800">All Courses</h2>
+        </div>
+
+        {courses.length === 0 ? (
+          <p className="text-gray-500">No course found</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {courses.map((course) => (
+              <div
+                key={course._id}
+                className="group bg-white/80 backdrop-blur-md rounded-xl shadow-sm 
+                     hover:shadow-lg hover:-translate-y-1 
+                     transition-all duration-300"
+              >
+                {/* IMAGE */}
+                <div className="flex justify-center pt-6">
+                  <img
+                    src={`http://localhost:5000/${course.logo}`}
+                    alt={course.title}
+                    className="h-28 w-28 rounded-full object-cover 
+                         border-4 border-purple-100"
+                  />
+                </div>
+
+                {/* CONTENT */}
+                <div className="p-4 text-center">
+                  <h2 className="text-base font-semibold text-gray-800">
+                    {course.title}
+                  </h2>
+                  {/* <p className="mt-2 text-sm text-gray-600">
+                    {expandedId === course._id
+                      ? course.description
+                      : `${course.description.slice(0, 20)}...`}
+                  </p>
+
+                  {course.description.length > 40 && (
+                    <button
+                      onClick={() =>
+                        setExpandedId(
+                          expandedId === course._id ? null : course._id,
+                        )
+                      }
+                      className="mt-1 text-xs font-medium text-blue-600 hover:underline"
+                    >
+                      {expandedId === course._id ? "Show less" : "Show more"}
+                    </button>
+                  )} */}
+                </div>
+
+                {/* PRICE */}
+                {/* <div className="px-4 pb-2 flex justify-center">
+                  <span
+                    className="inline-block bg-purple-50 
+                             text-purple-600 font-semibold 
+                             px-3 py-1 rounded-full text-sm"
+                  >
+                    ₹{course.price}
+                  </span>
+                </div> */}
+
+                {/* ACTIONS */}
+                <div className="px-4 pb-4">
+                  <div className="flex gap-2 bg-gray-50 p-2 rounded-lg">
+                    <button
+                      className="flex-1 flex items-center justify-center gap-1
+                           mainColor text-white border border-mainColor
+                           py-2 rounded-md text-sm"
+                    >
+                      Enroll Course
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default adminCourse;

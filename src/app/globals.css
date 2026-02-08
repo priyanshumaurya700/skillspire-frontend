@@ -3,24 +3,46 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Optional: Exported gradient as a CSS variable */
+  --radial-bg: radial-gradient(
+    60% 120% at 50% 50%,
+    hsla(0, 0%, 100%, 0) 0%,
+    rgba(250, 211, 238, 0.5) 100%
+  );
+  --mainColor:#B633CC ;
+  --secColor:#C45CD6 ;
 }
+  
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* This is the main color */
+/* #B633CC */
+/* This is the secondary color */
+/* #C45CD6 */
 
 body {
-  background: var(--background);
+  background: var(--radial-bg);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Optional class to reuse gradient background */
+.bg-radial-gradient {
+  background-color: white;
+  background-image: var(--radial-bg);
+  transform: rotate(180deg);
+}
+.mainColor{
+  background-color: var(--mainColor);
+}
+.mainColor:hover{
+   background-color: var(--secColor);
+}
+.secMainColor{
+  background-color: var(--secColor);
+}
+.textMainColor{
+  color: var(--mainColor);
+}
+.textSecColor{
+  color: var(--secColor);
 }
