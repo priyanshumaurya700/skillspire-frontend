@@ -21,7 +21,7 @@ const AddCoursePage = () => {
       return;
     }
     try {
-      const res = await createCourse( formData );
+      const res = await createCourse(formData);
 
       showAlert({
         title: "Success",
