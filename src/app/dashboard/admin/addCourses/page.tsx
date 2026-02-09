@@ -15,7 +15,7 @@ const AddCoursePage = () => {
 
       showAlert({
         title: "Success",
-        text: "Course added successfully",
+        text: "Course added successfully!",
         icon: "success",
       });
 

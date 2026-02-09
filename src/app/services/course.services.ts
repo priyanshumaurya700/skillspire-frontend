@@ -1,6 +1,6 @@
 import { api } from "./api";
 
-export const createCourse = (courseData: any) => {
+export const createCourse = (formData: any) => {
   return api.post("/api/courses/create", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
