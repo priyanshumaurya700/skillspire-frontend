@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 // import courses from "@/app/data/page"; // adjust path if needed
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-import axios from "axios";
 import { getCourseById } from "@/app/services/course.services";
 
 const CoursesId = () => {
@@ -13,10 +12,9 @@ const CoursesId = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
-    if (id){
+     if (!id || Array.isArray(id)) return;
       fetchCourseById(id);
-    }
-  },[]);
+  },[id]);
 
   const fetchCourseById = async (courseId: string) => {
     try{

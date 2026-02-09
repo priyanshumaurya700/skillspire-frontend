@@ -23,6 +23,7 @@
 body {
   background: var(--radial-bg);
   color: var(--foreground);
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Optional class to reuse gradient background */

@@ -1,14 +1,30 @@
 "use client";
 import { useParams } from "next/navigation";
-import React from "react";
-import courses from "@/app/data/page"; // adjust path if needed
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
+import { getCourseById } from "@/app/services/course.services";
+
+interface Course {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  logo: string;
+  level: string;
+}
 
 const CoursesId = () => {
-  const params = useParams();
-  const courseId = parseInt(params.id);
-  const course = courses.find((c) => c.id === courseId);
+  const { id } = useParams<{ id: string }>();
+  const [course, setCourse] = useState<Course | null>(null);
+
+  useEffect(() => {
+    if (!id) return;
+
+    getCourseById(id)
+      .then((res) => setCourse(res.data))
+      .catch(() => setCourse(null));
+  }, [id]);
 
   if (!course) {
     return <div className="p-6 text-center text-red-500">Course not found</div>;
@@ -25,7 +41,7 @@ const CoursesId = () => {
 
         {/* Course Image */}
         <Image
-          src={course.image}
+          src={`http://localhost:5000/${course.logo.replace(/\\/g, "/")}`}
           alt={course.title}
           width={800}
           height={400}

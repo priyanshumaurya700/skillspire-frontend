@@ -192,13 +192,16 @@ const CourseContentUploader = () => {
                   type="file"
                   accept="video/*"
                   className="w-full sm:w-auto"
-                  onChange={(e) =>
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>{
+                    const file = e.target.files?.[0];
+                    if (!file) return;
                     handleInputChange(
                       chapter.id,
                       "file",
-                      e.target.files?.[0] || null
+                      file
                     )
                   }
+                }
                   required
                 />
                 <button

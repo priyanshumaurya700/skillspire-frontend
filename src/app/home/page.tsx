@@ -3,7 +3,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
-const FeaturedCourseCard = ({ title, description, image }) => {
+interface FeaturedCourseCardProps {
+  title: string;
+  description: string;
+  image: string;
+}
+
+const FeaturedCourseCard = ({ title, description, image }: FeaturedCourseCardProps) => {
   const router = useRouter();
   const viewAllCourses = () => {
     router.push("/dashboard/student/courses");

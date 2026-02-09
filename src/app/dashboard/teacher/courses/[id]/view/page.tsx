@@ -1,8 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
 import React from "react";
-import courses from "@/app/data/page"; // adjust path if needed
-import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 
 const CoursesId = () => {

@@ -7,8 +7,16 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { getAllCourses } from "../services/course.services";
 
+interface FeaturedCourseCardProps {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  level: string;
+}
+
 // Single Course Card Component
-const FeaturedCourseCard = ({ id, title, description, image, level }) => {
+const FeaturedCourseCard = ({ id, title, description, image, level }: FeaturedCourseCardProps) => {
   const [showMore, setShowMore] = useState(false);
   const router = useRouter();
   const handleCourseClick = () => {
