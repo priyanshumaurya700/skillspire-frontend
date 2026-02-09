@@ -11,12 +11,7 @@ const AddCoursePage = () => {
     const form = event.currentTarget;
     const formData = new FormData(form);
     try {
-      const res = await createCourse({
-        title: formData.get("title"),
-        description: formData.get("description"),
-        price: formData.get("price"),
-        startDate: formData.get("startDate"),
-      }, );
+      const res = await createCourse({ formData });
 
       showAlert({
         title: "Success",
