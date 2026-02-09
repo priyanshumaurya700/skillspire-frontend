@@ -1,4 +1,5 @@
 "use client";
+import { createCourse } from "@/app/services/course.services";
 import { showAlert } from "@/sweetalert/ShowAlert";
 import axios from "axios";
 import React from "react";
@@ -10,10 +11,12 @@ const AddCoursePage = () => {
     const form = event.currentTarget;
     const formData = new FormData(form);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/courses/create",
-        formData,
-      );
+      const res = await createCourse({
+        title: formData.get("title"),
+        description: formData.get("description"),
+        price: formData.get("price"),
+        startDate: formData.get("startDate"),
+      });
 
       showAlert({
         title: "Success",
