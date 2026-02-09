@@ -16,7 +16,7 @@ const AddCoursePage = () => {
         description: formData.get("description"),
         price: formData.get("price"),
         startDate: formData.get("startDate"),
-      });
+      }, );
 
       showAlert({
         title: "Success",
