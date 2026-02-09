@@ -10,6 +10,16 @@ const AddCoursePage = () => {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    // check if logo/file exists
+    const logoFile = (form.logo as HTMLInputElement)?.files?.[0];
+    if (!logoFile) {
+      showAlert({
+        title: "Error",
+        text: "Please upload a course logo!",
+        icon: "error",
+      });
+      return;
+    }
     try {
       const res = await createCourse({ formData });
 
