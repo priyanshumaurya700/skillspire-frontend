@@ -6,9 +6,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "http",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "http",
         hostname: "localhost",
         port: "5000",
-        pathname: "/**",
       },
     ],
   },
