@@ -2,6 +2,7 @@
 import { getAllCourses, getCourseById } from "@/app/services/course.services";
 import { showAlert } from "@/sweetalert/ShowAlert";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -78,8 +79,8 @@ const manageCourse = () => {
               >
                 {/* IMAGE */}
                 <div className="flex justify-center pt-6">
-                  <img
-                    src={`http://localhost:5000/${course.logo}`}
+                  <Image
+                    src={course.logo}
                     alt={course.title}
                     className="h-28 w-28 rounded-full object-cover 
                          border-4 border-purple-100"

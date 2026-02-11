@@ -1,4 +1,5 @@
 "use client";
+import { getAllCourses } from "@/app/services/course.services";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -22,7 +23,7 @@ const adminCourse = () => {
 
   const fetchCourses = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/courses/all");
+      const res = await getAllCourses();
       setCourses(res.data);
     } catch (error) {
       console.error("Error fetching courses", error);
