@@ -1,7 +1,16 @@
-'use client";'
+"use client";
 
 import { api } from "./api";
-const token = localStorage.getItem("token");
+
+api.interceptors.request.use((config) => {
+  if(typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+  }
+  return config;
+});
 
 export const createCourse = (formData: any) => {
   return api.post("/api/courses/create", formData);
@@ -12,9 +21,5 @@ export const getAllCourses = () => {
 };
 
 export const getCourseById = (id: string) => {
-  return api.get(`/api/courses/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  return api.get(`/api/courses/${id}`);
 };
