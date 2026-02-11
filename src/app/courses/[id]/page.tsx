@@ -1,5 +1,5 @@
 "use client";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
@@ -14,6 +14,8 @@ interface Course {
   level: string;
 }
 
+const router = useRouter();
+
 const CoursesId = () => {
   const { id } = useParams<{ id: string }>();
   const [course, setCourse] = useState<Course | null>(null);
@@ -23,7 +25,13 @@ const CoursesId = () => {
 
     getCourseById(id)
       .then((res) => setCourse(res.data))
-      .catch(() => setCourse(null));
+      .catch((error: any) => {
+        if (error.response.status === 401) {
+          router.push("/login");
+        } else {
+          setCourse(null);
+        }
+      });
   }, [id]);
 
   if (!course) {

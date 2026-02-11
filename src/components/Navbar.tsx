@@ -43,6 +43,7 @@ export default function Navbar() {
         password,
       });
       console.log("Login successful:", response?.data);
+      localStorage.setItem("token", response.data.token);
       const user = response.data.data;
       showAlert({
         title: response.data.message || "Login Successful",
