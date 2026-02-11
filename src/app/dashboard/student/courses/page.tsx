@@ -129,7 +129,7 @@ const Courses = () => {
                 id={course._id}
                 title={course.title}
                 description={course.description}
-                image={`http://localhost:5000/${course.logo.replace(/\\/g, "/")}`}
+                image={course.logo}
                 level={course.level}
               />
             ))}

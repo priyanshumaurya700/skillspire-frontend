@@ -41,7 +41,7 @@ const CoursesId = () => {
 
         {/* Course Image */}
         <Image
-          src={`http://localhost:5000/${course.logo.replace(/\\/g, "/")}`}
+          src={course.logo}
           alt={course.title}
           width={800}
           height={400}
