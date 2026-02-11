@@ -1,6 +1,7 @@
 "use client";
 import { getAllCourses } from "@/app/services/course.services";
 import axios from "axios";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface Course {
