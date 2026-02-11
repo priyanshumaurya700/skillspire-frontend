@@ -1,3 +1,5 @@
+'use client";'
+
 import { api } from "./api";
 const token = localStorage.getItem("token");
 
