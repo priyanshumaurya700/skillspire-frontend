@@ -54,9 +54,11 @@ const adminCourse = () => {
               >
                 {/* IMAGE */}
                 <div className="flex justify-center pt-6">
-                  <img
-                    src={`http://localhost:5000/${course.logo}`}
+                  <Image
+                    src={course.logo}
                     alt={course.title}
+                    width={112}
+                    height={112}
                     className="h-28 w-28 rounded-full object-cover 
                          border-4 border-purple-100"
                   />
