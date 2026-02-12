@@ -34,7 +34,7 @@ const CoursesId = () => {
   }, [id]);
 
   if (!course) {
-    return <div className="p-6 text-center text-red-500">Course not found</div>;
+    return <div className="p-6 text-center text-red-500">Course Loading...</div>;
   }
 
   return (
