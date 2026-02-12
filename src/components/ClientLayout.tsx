@@ -9,7 +9,7 @@ export default function ClientLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
   const isDashboardRoute = pathname.startsWith("/dashboard");
 
   return (

@@ -15,7 +15,7 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) => pathname?.startsWith(path);
 
   useEffect(() => {
     const handleScroll = () => {
