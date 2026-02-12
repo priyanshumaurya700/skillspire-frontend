@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { HiBars3, HiXMark } from "react-icons/hi2";
-import { error } from "console";
-import axios from "axios";
 import { showAlert } from "@/sweetalert/ShowAlert";
 import { login, register } from "@/app/services/auth.service";
 
@@ -43,7 +41,7 @@ export default function Navbar() {
         password,
       });
       console.log("Login successful:", response?.data);
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response?.data?.token);
       const user = response.data.data;
       showAlert({
         title: response.data.message || "Login Successful",
@@ -70,8 +68,8 @@ export default function Navbar() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name");
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
     const role = formData.get("role");
 
     try {
@@ -148,7 +146,8 @@ export default function Navbar() {
               className="text-3xl text-gray-700 focus:outline-none"
               aria-label="Toggle Menu"
             >
-              {menuOpen ? <HiXMark /> : <HiBars3 />}
+              {/* {menuOpen ? <HiXMark /> : <HiBars3 />} */}
+              {menuOpen ? "X" : "☰"}
             </button>
           </div>
         </div>

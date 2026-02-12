@@ -69,7 +69,8 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
               className="text-3xl text-gray-700 focus:outline-none"
               aria-label="Toggle Menu"
             >
-              {menuOpen ? <HiXMark /> : <HiBars3 />}
+              {/* {menuOpen ? <HiXMark /> : <HiBars3 />} */}
+              {menuOpen ? "X" : "☰"}
             </button>
           </div>
         </div>
