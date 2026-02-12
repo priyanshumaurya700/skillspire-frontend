@@ -14,9 +14,8 @@ interface Course {
   level: string;
 }
 
-const router = useRouter();
-
 const CoursesId = () => {
+  const router = useRouter();
   const { id } = useParams<{ id: string }>();
   const [course, setCourse] = useState<Course | null>(null);
 
