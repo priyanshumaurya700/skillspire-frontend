@@ -51,7 +51,9 @@ export default function Navbar() {
       setShowLoginModal(false);
 
       //role based redirection
-      if (user.role === "teacher") {
+      if (user.role === "admin") {
+        router.push("/dashboard/admin");
+      } else if (user.role === "teacher") {
         router.push("/dashboard/teacher");
       } else {
         router.push("/dashboard/student");
