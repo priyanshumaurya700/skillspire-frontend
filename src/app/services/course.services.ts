@@ -3,7 +3,7 @@
 import { api } from "./api";
 
 api.interceptors.request.use((config) => {
-  if(typeof window !== "undefined") {
+  if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
@@ -22,4 +22,11 @@ export const getAllCourses = () => {
 
 export const getCourseById = (id: string) => {
   return api.get(`/api/courses/${id}`);
+};
+
+export const assignCourseToTeacher = (courseId: string, teacherId: string) => {
+  return api.post("/api/courses/assign", {
+    courseId,
+    teacherId,
+  });
 };
