@@ -1,10 +1,10 @@
 "use client";
-import { teachersGet } from "@/app/services/auth.service";
 import {
   assignCourseToTeacher,
   getAllCourses,
   getCourseById,
 } from "@/app/services/course.services";
+import { teachersGet } from "@/app/services/teacher";
 import { showAlert } from "@/sweetalert/ShowAlert";
 import axios from "axios";
 import Image from "next/image";
@@ -70,7 +70,10 @@ const manageCourse = () => {
   const fetchTeachers = async () => {
     try {
       const res = await teachersGet({}); // correct endpoint
-      setTeachers(res.data);
+      console.log("FULL RESPONSE:", res);
+      console.log("DATA:", res.data);
+      console.log("IS ARRAY:", Array.isArray(res.data));
+      setTeachers(res.data.data);
     } catch (error) {
       console.error("Error fetching teachers", error);
     }
