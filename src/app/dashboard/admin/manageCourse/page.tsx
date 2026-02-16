@@ -73,7 +73,7 @@ const manageCourse = () => {
       console.log("FULL RESPONSE:", res);
       console.log("DATA:", res.data);
       console.log("IS ARRAY:", Array.isArray(res.data));
-      setTeachers(res.data.data);
+      setTeachers(res.data);
     } catch (error) {
       console.error("Error fetching teachers", error);
     }
