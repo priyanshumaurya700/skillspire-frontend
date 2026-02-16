@@ -156,8 +156,8 @@ const manageCourse = () => {
                  focus:border-indigo-500 transition duration-200"
               >
                 <option value="">Choose a teacher</option>
-                {teachers?.map((teacher) => (
-                  <option key={teacher?._id} value={teacher?._id}>
+                {teachers.map((teacher) => (
+                  <option key={teacher._id} value={teacher._id}>
                     {teacher?.name}
                   </option>
                 ))}
