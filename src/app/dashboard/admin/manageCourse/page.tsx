@@ -68,7 +68,7 @@ const manageCourse = () => {
   // assign course to teacher handler
   const fetchTeachers = async () => {
     try {
-      const res = await axios.get("/api/teachers"); // correct endpoint
+      const res = await axios.get("/api/users/teachers"); // correct endpoint
       setTeachers(res.data);
     } catch (error) {
       console.error("Error fetching teachers", error);
