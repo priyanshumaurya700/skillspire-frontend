@@ -7,6 +7,6 @@ export const login = (data: any) => {
 export const register = (data: any) => {
   return api.post("/api/users/register", data);
 };
-export const teachers = (data: any) => {
-  return api.post("/api/users/teachers", data);
+export const teachersGet = (data: any) => {
+  return api.get("/api/users/teachers", data);
 };

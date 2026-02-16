@@ -1,4 +1,5 @@
 "use client";
+import { teachersGet } from "@/app/services/auth.service";
 import {
   assignCourseToTeacher,
   getAllCourses,
@@ -68,7 +69,7 @@ const manageCourse = () => {
   // assign course to teacher handler
   const fetchTeachers = async () => {
     try {
-      const res = await axios.get("/api/users/teachers"); // correct endpoint
+      const res = await teachersGet({}); // correct endpoint
       setTeachers(res.data);
     } catch (error) {
       console.error("Error fetching teachers", error);
