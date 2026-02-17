@@ -91,8 +91,10 @@ const manageCourse = () => {
     try {
       const res = await assignCourseToTeacher(selectedCourse, selectedTeacher);
 
-      if (res.data.success) {
-        showAlert({
+      console.log("Assign Response:", res);
+
+      if (res?.status === 200 || res?.data?.success) {
+        await showAlert({
           title: "Success!",
           text: "Course assigned successfully.",
           icon: "success",
@@ -133,6 +135,7 @@ const manageCourse = () => {
                 Select Course
               </label>
               <select
+                value={selectedCourse}
                 onChange={(e) => setSelectedCourse(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-300 
                  focus:outline-none focus:ring-2 focus:ring-indigo-500 
@@ -153,6 +156,7 @@ const manageCourse = () => {
                 Select Teacher
               </label>
               <select
+                value={selectedTeacher}
                 onChange={(e) => setSelectedTeacher(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-300 
                  focus:outline-none focus:ring-2 focus:ring-indigo-500 
