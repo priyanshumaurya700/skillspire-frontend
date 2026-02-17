@@ -5,17 +5,20 @@ import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-interface Course {
+interface AssignedCourse {
   _id: string;
-  title: string;
-  description: string;
-  price: number;
-  logo: string;
-  startDate: string;
+  courseId: {
+    _id: string;
+    title: string;
+    description: string;
+    price: number;
+    logo: string;
+    startDate: string;
+  };
 }
 
 const adminCourse = () => {
-  const [courses, setCourses] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<AssignedCourse[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -38,8 +41,8 @@ const adminCourse = () => {
     try {
       const res = await assignedCourseGet({});
       console.log("Assigned Courses Response:", res);
-      const courseData = Array.isArray(res?.data?.course)
-        ? res.data.course
+      const courseData = Array.isArray(res?.data?.assignments)
+        ? res.data.assignments
         : [];
       setCourses(courseData);
     } catch (error) {
@@ -68,8 +71,8 @@ const adminCourse = () => {
               {/* IMAGE */}
               <div className="flex justify-center pt-6">
                 <Image
-                  src={course.logo}
-                  alt={course.title}
+                  src={course.courseId.logo}
+                  alt={course.courseId.title}
                   width={112}
                   height={112}
                   className="h-28 w-28 rounded-full object-cover 
@@ -80,7 +83,7 @@ const adminCourse = () => {
               {/* CONTENT */}
               <div className="p-4 text-center">
                 <h2 className="text-base font-semibold text-gray-800">
-                  {course.title}
+                  {course.courseId.title}
                 </h2>
                 {/* <p className="mt-2 text-sm text-gray-600">
                     {expandedId === course._id
