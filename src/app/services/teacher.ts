@@ -6,5 +6,5 @@ export const teachersGet = (data: any) => {
 
 // assigned course
 export const assignedCourseGet = (data: any) => {
-  return api.get("/api/teachers/assigned-course", data);
+  return api.get("/api/teachers/assigned-courses", data);
 };
