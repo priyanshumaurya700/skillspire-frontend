@@ -8,7 +8,7 @@ interface AlertOptions {
 }
 
 export const showAlert = ({title, text, icon, confirmButtonText = 'OK'}: AlertOptions)=>{
-    Swal.fire({
+    return Swal.fire({
         title,
         text,
         icon,
