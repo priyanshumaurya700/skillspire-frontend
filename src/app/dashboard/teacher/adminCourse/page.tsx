@@ -42,7 +42,7 @@ const adminCourse = () => {
       const res = await assignedCourseGet({});
       console.log("Assigned Courses Response:", res);
       const courseData = Array.isArray(res?.data?.assignments)
-        ? res.data.assignments
+        ? res.data.assignments.map((a: any) => a.courseId)
         : [];
       setCourses(courseData);
     } catch (error) {
