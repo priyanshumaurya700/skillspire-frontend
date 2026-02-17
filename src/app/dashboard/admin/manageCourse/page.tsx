@@ -106,7 +106,7 @@ const manageCourse = () => {
     } catch (error) {
       showAlert({
         title: "Error!",
-        text: error.data?.message || "Failed to assign course to teacher.",
+        text: "Failed to assign course to teacher.",
         icon: "error",
       });
     }
