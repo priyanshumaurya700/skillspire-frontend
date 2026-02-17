@@ -94,15 +94,17 @@ const manageCourse = () => {
       console.log("Assign Response:", res);
 
       if (res?.status === 200) {
-        await showAlert({
+        const result = await showAlert({
           title: "Success!",
           text: res.data?.message || "Course assigned to teacher successfully.",
           icon: "success",
         });
-      }
 
-      setSelectedCourse("");
-      setSelectedTeacher("");
+        if (result.isConfirmed) {
+          setSelectedCourse("");
+          setSelectedTeacher("");
+        }
+      }
     } catch (error) {
       showAlert({
         title: "Error!",
@@ -173,6 +175,7 @@ const manageCourse = () => {
 
             {/* Assign Button */}
             <button
+              type="button"
               onClick={handleAssign}
               disabled={!selectedCourse || !selectedTeacher}
               className={`w-full py-2.5 rounded-lg font-semibold text-white 
