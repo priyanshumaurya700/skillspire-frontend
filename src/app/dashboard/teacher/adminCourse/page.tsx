@@ -1,5 +1,6 @@
 "use client";
 import { getAllCourses } from "@/app/services/course.services";
+import { assignedCourseGet } from "@/app/services/teacher";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -19,15 +20,26 @@ const adminCourse = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchCourses();
+    fetchAssignedCourses();
   }, []);
 
-  const fetchCourses = async () => {
+  // const fetchCourses = async () => {
+  //   try {
+  //     const res = await getAllCourses();
+  //     setCourses(res.data);
+  //   } catch (error) {
+  //     console.error("Error fetching courses", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const fetchAssignedCourses = async () => {
     try {
-      const res = await getAllCourses();
+      const res = await assignedCourseGet({});
       setCourses(res.data);
     } catch (error) {
-      console.error("Error fetching courses", error);
+      console.error("Error fetching assigned courses", error);
     } finally {
       setLoading(false);
     }
