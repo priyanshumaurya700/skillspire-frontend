@@ -38,8 +38,8 @@ const adminCourse = () => {
     try {
       const res = await assignedCourseGet({});
       console.log("Assigned Courses Response:", res);
-      const courseData = Array.isArray(res?.data?.courses)
-        ? res.data.courses
+      const courseData = Array.isArray(res?.data?.course)
+        ? res.data.course
         : [];
       setCourses(courseData);
     } catch (error) {
@@ -67,14 +67,14 @@ const adminCourse = () => {
             >
               {/* IMAGE */}
               <div className="flex justify-center pt-6">
-                <Image
+                {/* <Image
                   src={course.logo}
                   alt={course.title}
                   width={112}
                   height={112}
                   className="h-28 w-28 rounded-full object-cover 
                          border-4 border-purple-100"
-                />
+                /> */}
               </div>
 
               {/* CONTENT */}
