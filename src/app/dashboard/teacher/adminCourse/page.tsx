@@ -15,7 +15,7 @@ interface Course {
 }
 
 const adminCourse = () => {
-  const [courses, setCourses] = useState<Course[]>([]);
+  const [courses, setCourses] =  useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -37,7 +37,10 @@ const adminCourse = () => {
   const fetchAssignedCourses = async () => {
     try {
       const res = await assignedCourseGet({});
-      setCourses(res.data.courses);
+       const courseData = Array.isArray(res?.data?.courses)
+      ? res.data.courses
+      : [];
+      setCourses(courseData);
     } catch (error) {
       console.error("Error fetching assigned courses", error);
     } finally {
@@ -54,9 +57,7 @@ const adminCourse = () => {
           <h2 className="font-semibold text-lg text-gray-800">All Courses</h2>
         </div>
 
-        {courses.length === 0 ? (
-          <p className="text-gray-500">No course found</p>
-        ) : (
+        {/* {Array.isArray(courses) && courses.length > 0 ? ( */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {courses.map((course) => (
               <div
@@ -128,7 +129,6 @@ const adminCourse = () => {
               </div>
             ))}
           </div>
-        )}
       </div>
     </>
   );
