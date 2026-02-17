@@ -15,7 +15,7 @@ interface Course {
 }
 
 const adminCourse = () => {
-  const [courses, setCourses] =  useState<Course[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -37,9 +37,10 @@ const adminCourse = () => {
   const fetchAssignedCourses = async () => {
     try {
       const res = await assignedCourseGet({});
-       const courseData = Array.isArray(res?.data?.courses)
-      ? res.data.courses
-      : [];
+      console.log("Assigned Courses Response:", res);
+      const courseData = Array.isArray(res?.data?.courses)
+        ? res.data.courses
+        : [];
       setCourses(courseData);
     } catch (error) {
       console.error("Error fetching assigned courses", error);
@@ -56,34 +57,32 @@ const adminCourse = () => {
         <div className="mb-6 flex items-center justify-between">
           <h2 className="font-semibold text-lg text-gray-800">All Courses</h2>
         </div>
-
-        {/* {Array.isArray(courses) && courses.length > 0 ? ( */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {courses.map((course) => (
-              <div
-                key={course._id}
-                className="group bg-white/80 backdrop-blur-md rounded-xl shadow-sm 
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {courses.map((course) => (
+            <div
+              key={course._id}
+              className="group bg-white/80 backdrop-blur-md rounded-xl shadow-sm 
                      hover:shadow-lg hover:-translate-y-1 
                      transition-all duration-300"
-              >
-                {/* IMAGE */}
-                <div className="flex justify-center pt-6">
-                  <Image
-                    src={course.logo}
-                    alt={course.title}
-                    width={112}
-                    height={112}
-                    className="h-28 w-28 rounded-full object-cover 
+            >
+              {/* IMAGE */}
+              <div className="flex justify-center pt-6">
+                <Image
+                  src={course.logo}
+                  alt={course.title}
+                  width={112}
+                  height={112}
+                  className="h-28 w-28 rounded-full object-cover 
                          border-4 border-purple-100"
-                  />
-                </div>
+                />
+              </div>
 
-                {/* CONTENT */}
-                <div className="p-4 text-center">
-                  <h2 className="text-base font-semibold text-gray-800">
-                    {course.title}
-                  </h2>
-                  {/* <p className="mt-2 text-sm text-gray-600">
+              {/* CONTENT */}
+              <div className="p-4 text-center">
+                <h2 className="text-base font-semibold text-gray-800">
+                  {course.title}
+                </h2>
+                {/* <p className="mt-2 text-sm text-gray-600">
                     {expandedId === course._id
                       ? course.description
                       : `${course.description.slice(0, 20)}...`}
@@ -101,10 +100,10 @@ const adminCourse = () => {
                       {expandedId === course._id ? "Show less" : "Show more"}
                     </button>
                   )} */}
-                </div>
+              </div>
 
-                {/* PRICE */}
-                {/* <div className="px-4 pb-2 flex justify-center">
+              {/* PRICE */}
+              {/* <div className="px-4 pb-2 flex justify-center">
                   <span
                     className="inline-block bg-purple-50 
                              text-purple-600 font-semibold 
@@ -114,21 +113,21 @@ const adminCourse = () => {
                   </span>
                 </div> */}
 
-                {/* ACTIONS */}
-                <div className="px-4 pb-4">
-                  <div className="flex gap-2 bg-gray-50 p-2 rounded-lg">
-                    <button
-                      className="flex-1 flex items-center justify-center gap-1
+              {/* ACTIONS */}
+              <div className="px-4 pb-4">
+                <div className="flex gap-2 bg-gray-50 p-2 rounded-lg">
+                  <button
+                    className="flex-1 flex items-center justify-center gap-1
                            mainColor text-white border border-mainColor
                            py-2 rounded-md text-sm"
-                    >
-                      Enroll Course
-                    </button>
-                  </div>
+                  >
+                    Enroll Course
+                  </button>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
