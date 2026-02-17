@@ -36,7 +36,7 @@ const adminCourse = () => {
 
   const fetchAssignedCourses = async () => {
     try {
-      const res = await assignedCourseGet({data});
+      const res = await assignedCourseGet({});
       setCourses(res.data);
     } catch (error) {
       console.error("Error fetching assigned courses", error);
