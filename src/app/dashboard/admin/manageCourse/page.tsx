@@ -93,10 +93,10 @@ const manageCourse = () => {
 
       console.log("Assign Response:", res);
 
-      if (res?.status === 200 || res?.data?.success) {
+      if (res?.status === 200) {
         await showAlert({
           title: "Success!",
-          text: "Course assigned successfully.",
+          text: res.data?.message || "Course assigned to teacher successfully.",
           icon: "success",
         });
       }
@@ -106,7 +106,7 @@ const manageCourse = () => {
     } catch (error) {
       showAlert({
         title: "Error!",
-        text: "Failed to assign course to teacher.",
+        text: error.data?.message || "Failed to assign course to teacher.",
         icon: "error",
       });
     }
