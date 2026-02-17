@@ -67,14 +67,14 @@ const adminCourse = () => {
             >
               {/* IMAGE */}
               <div className="flex justify-center pt-6">
-                {/* <Image
+                <Image
                   src={course.logo}
                   alt={course.title}
                   width={112}
                   height={112}
                   className="h-28 w-28 rounded-full object-cover 
                          border-4 border-purple-100"
-                /> */}
+                />
               </div>
 
               {/* CONTENT */}
