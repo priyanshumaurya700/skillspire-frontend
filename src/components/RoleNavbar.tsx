@@ -24,8 +24,11 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
       setScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
+    const loadProfile = async () => {
+      await fetchUserProfile();
+    };
+    loadProfile();
     return () => window.removeEventListener("scroll", handleScroll);
-    fetchUserProfile();
   }, []);
 
   // user profile fetching
