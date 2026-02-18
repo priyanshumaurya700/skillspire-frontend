@@ -52,7 +52,7 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
         {/* Logo */}
         <div className="text-2xl font-bold tracking-wide">
           <span className="text-gray-800">Skill</span>
-          <span className="text-purple-600">Spire</span>
+          <span className="textMainColor">Spire</span>
         </div>
 
         {/* Desktop Nav */}
@@ -69,7 +69,7 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
               >
                 {link.name}
                 {isActive(link.href) && (
-                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-purple-600 rounded-full"></span>
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bgMainColor rounded-full"></span>
                 )}
               </Link>
             </li>
@@ -83,9 +83,9 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
           <div className="hidden md:block relative">
             <button
               onClick={() => setShowProfile(!showProfile)}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-100 hover:bg-purple-200 transition duration-200"
+              className="w-10 h-10 flex items-center justify-center cursor-pointer rounded-full bg-purple-100 hover:bg-purple-200 transition duration-200"
             >
-              <CgProfile size={22} className="text-purple-600" />
+              <CgProfile size={22} className="textMainColor cursor-pointer" />
             </button>
 
             {/* Animated Dropdown */}
