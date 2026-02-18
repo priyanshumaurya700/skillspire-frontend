@@ -50,7 +50,7 @@ export default function ProfileDropdown({ user, onClose }: Props) {
 
   return (
     <div
-      className="w-72 maincolor rounded-2xl 
+      className="w-72 bg-white rounded-2xl 
                  shadow-2xl 
                  p-5 space-y-4 
                  animate-slideDown"
@@ -58,7 +58,7 @@ export default function ProfileDropdown({ user, onClose }: Props) {
       {/* 👤 User Info */}
       <div className="flex items-center gap-3 pb-4 border-b">
         <div className="w-12 h-12 rounded-full 
-                       maincolor text-white 
+                        maincolor 
                         flex items-center justify-center 
                         font-semibold text-lg">
           {initials}
