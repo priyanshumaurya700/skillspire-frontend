@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { showAlert } from "@/sweetalert/ShowAlert";
-import { login, register } from "@/app/services/auth.service";
+import { login, register, userProfile } from "@/app/services/auth.service";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -99,6 +99,8 @@ export default function Navbar() {
       });
     }
   };
+
+ 
 
   return (
     <>
