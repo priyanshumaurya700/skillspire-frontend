@@ -77,7 +77,7 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
         {/* Right Section */}
         <div className="flex items-center gap-4">
           {/* Profile Icon */}
-          <div className="hidden md:block">
+          <div className="hidden md:block cursor-pointer relative">
             <button onClick={() => setShowProfile(!showProfile)}>
               <CgProfile size={30} />
             </button>
