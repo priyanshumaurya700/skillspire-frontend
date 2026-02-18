@@ -9,15 +9,10 @@ export default function ProfileDropdown({ user }: Props) {
 
   return (
     <div className="w-64 bg-white rounded-xl shadow-lg border p-4 space-y-3">
-      
       {/* User Info Section */}
       <div className="border-b pb-3">
-        <p className="font-semibold text-gray-800">
-          {user.name}
-        </p>
-        <p className="text-sm text-gray-500">
-          {user.email}
-        </p>
+        <p className="font-semibold text-gray-800">{user.name}</p>
+        <p className="text-sm text-gray-500">{user.email}</p>
         <span className="text-xs mt-1 inline-block px-2 py-1 rounded-full bg-gray-100 textMainColor capitalize">
           {user.role}
         </span>
@@ -25,20 +20,20 @@ export default function ProfileDropdown({ user }: Props) {
 
       {/* Actions Section */}
       <div className="flex flex-col space-y-2 text-sm">
-        <button className="text-left hover:textSecColor transition">
+        <button className="mt-4 w-full text-sm py-1 rounded hover:textSecColor transition">
           View Profile
         </button>
 
-        <button className="text-left hover:textSecColor transition">
+        <button className="mt-4 w-full text-sm py-1 rounded hover:textSecColor transition">
           Settings
         </button>
 
         <button
           onClick={() => {
             localStorage.removeItem("token");
-            window.location.href = "/login";
+            window.location.href = "/home";
           }}
-          className="text-left text-red-500 hover:text-red-600 transition"
+          className="mt-4 w-full text-sm bg-red-500 text-white py-1 rounded transition hover:textSecColor"
         >
           Logout
         </button>
