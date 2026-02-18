@@ -51,7 +51,7 @@ export default function ProfilePopup({ user, onClose }: ProfilePopupProps) {
         <button
           onClick={() => {
             localStorage.removeItem("token");
-            window.location.href = "/login";
+            window.location.href = "/home";
           }}
           className="mt-4 w-full text-sm bg-red-500 text-white py-1 rounded"
         >
