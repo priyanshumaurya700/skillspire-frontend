@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiBars3, HiXMark } from "react-icons/hi2";
-import { CgProfile } from "react-icons/cg";
 import { userProfile } from "@/app/services/auth.service";
-import ProfilePopup from "./Profile";
+import ProfileDropdown from "./ProfileDropdown";
 
 interface RoleNavbarProps {
   navLinks: { name: string; href: string }[];
@@ -18,6 +17,7 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
   const [user, setUser] = useState<any>(null);
   const [showProfile, setShowProfile] = useState(false);
   const pathname = usePathname();
+  const profileRef = useRef<HTMLDivElement>(null);
 
   const isActive = (path: string) => pathname?.startsWith(path);
 
@@ -39,16 +39,40 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Improved click outside close
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(event.target as Node)
+      ) {
+        setShowProfile(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const getInitials = (name: string) => {
+    return name
+      ?.split(" ")
+      .map((word: string) => word[0])
+      .join("")
+      .toUpperCase();
+  };
+
   return (
     <nav
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-md"
+          ? "bg-white/90 backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex justify-between items-center">
-        
+
         {/* Logo */}
         <div className="text-2xl font-bold tracking-wide">
           <span className="text-gray-800">Skill</span>
@@ -56,50 +80,53 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
         </div>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-8 text-gray-700 font-medium">
+        <ul className="hidden md:flex items-center gap-10 text-gray-700 font-medium">
           {navLinks.map((link) => (
-            <li key={link.href}>
+            <li key={link.href} className="relative group">
               <Link
                 href={link.href}
-                className={`relative transition duration-200 ${
+                className={`transition-all duration-300 ${
                   isActive(link.href)
-                    ? "textMainColor "
+                    ? "textMainColor"
                     : "hover:textSecColor"
                 }`}
               >
                 {link.name}
-                {isActive(link.href) && (
-                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bgMainColor rounded-full"></span>
-                )}
               </Link>
+
+              {/* Animated underline */}
+              <span
+                className={`absolute left-0 -bottom-1 h-[2px] bgMainColor transition-all duration-300 ${
+                  isActive(link.href)
+                    ? "w-full"
+                    : "w-0 group-hover:w-full"
+                }`}
+              ></span>
             </li>
           ))}
         </ul>
 
-        {/* Right Section */}
-        <div className="flex items-center gap-4 relative">
+        {/* Profile Section */}
+        <div className="flex items-center gap-5 relative" ref={profileRef}>
           
-          {/* Profile Avatar */}
-          <div className="hidden md:block relative">
-            <button
-              onClick={() => setShowProfile(!showProfile)}
-              className="w-10 h-10 flex items-center justify-center cursor-pointer rounded-full bg-purple-100 hover:bg-purple-200 transition duration-200"
-            >
-              <CgProfile size={22} className="textMainColor cursor-pointer" />
-            </button>
+          {/* Initials Avatar */}
+          <button
+            onClick={() => setShowProfile(!showProfile)}
+            className="w-10 h-10 flex items-center justify-center rounded-full 
+                       bg-gray-100 hover:bg-gray-200 
+                       font-semibold textMainColor transition-all duration-200"
+          >
+            {user?.name ? getInitials(user.name) : "U"}
+          </button>
 
-            {/* Animated Dropdown */}
-            {showProfile && (
-              <div className="absolute right-0 mt-3 animate-fadeIn">
-                <ProfilePopup
-                  user={user}
-                  onClose={() => setShowProfile(false)}
-                />
-              </div>
-            )}
-          </div>
+          {/* Smooth Animated Dropdown */}
+          {showProfile && (
+            <div className="absolute right-0 top-14 animate-dropdown">
+              <ProfileDropdown user={user} />
+            </div>
+          )}
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
           <div className="md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -110,34 +137,6 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-white shadow-md border-t px-6 py-4 space-y-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className={`block py-2 text-gray-700 ${
-                isActive(link.href)
-                  ? "text-purple-600 font-semibold"
-                  : "hover:text-purple-500"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-
-          {/* Mobile Profile */}
-          <div className="pt-3 border-t flex items-center gap-3">
-            <div className="w-8 h-8 flex items-center justify-center rounded-full bg-purple-100">
-              <CgProfile size={18} className="text-purple-600" />
-            </div>
-            <span className="text-sm">{user?.name}</span>
-          </div>
-        </div>
-      )}
     </nav>
   );
 }
