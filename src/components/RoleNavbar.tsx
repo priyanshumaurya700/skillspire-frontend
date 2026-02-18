@@ -122,8 +122,8 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
 
           {/* Smooth Animated Dropdown */}
           {showProfile && (
-            <div className="absolute right-0 top-14 animate-dropdown">
-              <ProfileDropdown user={user} />
+            <div className="absolute right-0 top-14 animate-slideDown">
+              <ProfileDropdown user={user} onClose={() => setShowProfile(false)} />
             </div>
           )}
 
