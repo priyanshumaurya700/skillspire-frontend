@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { userProfile } from "@/app/services/auth.service";
-import ProfileDropdown from "./ProfileDropdown";
+import ProfileDropdown from "./Profile";
+// import ProfileDropdown from "./ProfileDropdown";
 
 interface RoleNavbarProps {
   navLinks: { name: string; href: string }[];
