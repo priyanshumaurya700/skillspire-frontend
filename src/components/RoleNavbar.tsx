@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { CgProfile } from "react-icons/cg";
 import { userProfile } from "@/app/services/auth.service";
+import ProfilePopup from "./Profile";
 
 interface RoleNavbarProps {
   navLinks: { name: string; href: string }[];
@@ -16,6 +17,7 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [user, setUser] = useState<{ name: string; role: string } | null>(null);
+  const [showProfile, setShowProfile] = useState(false);
 
   const isActive = (path: string) => pathname?.startsWith(path);
 
@@ -76,9 +78,13 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
         <div className="flex items-center gap-4">
           {/* Profile Icon */}
           <div className="hidden md:block">
-            {/* <CgProfile size={30} /> */}
-            <p>Welcome, {user?.name}</p>
-            <p>Role: {user?.role}</p>
+            <button onClick={() => setShowProfile(!showProfile)}>
+              <CgProfile size={30} />
+            </button>
+
+            {showProfile && (
+              <ProfilePopup user={user} onClose={() => setShowProfile(false)} />
+            )}
           </div>
 
           {/* Mobile Hamburger */}
