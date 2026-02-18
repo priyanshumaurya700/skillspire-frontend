@@ -63,8 +63,8 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
                 href={link.href}
                 className={`relative transition duration-200 ${
                   isActive(link.href)
-                    ? "text-purple-600"
-                    : "hover:text-purple-500"
+                    ? "textMainColor "
+                    : "hover:textSecColor"
                 }`}
               >
                 {link.name}
