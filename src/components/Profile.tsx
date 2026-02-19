@@ -9,7 +9,6 @@ interface Props {
 }
 
 export default function ProfileDropdown({ user, onClose }: Props) {
-
   // ESC close
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -50,24 +49,26 @@ export default function ProfileDropdown({ user, onClose }: Props) {
 
   return (
     <div
-      className="w-72 -bg-linear-210 rounded-2xl 
-                 shadow-2xl 
-                 p-5 space-y-4 
-                 animate-slideDown"
+      className="w-72 rounded-2xl 
+           bg-white/80 backdrop-blur-lg
+           border border-purple-100
+           shadow-2xl 
+           p-5 space-y-4 
+           animate-slideDown"
     >
       {/* 👤 User Info */}
       <div className="flex items-center gap-3 pb-4 border-b">
-        <div className="w-12 h-12 rounded-full 
-                        bg-purple-500 text-white
+        <div
+          className="w-12 h-12 rounded-full 
+                        bg-maincolor text-white
                         flex items-center justify-center 
-                        font-semibold text-lg">
+                        font-semibold text-lg"
+        >
           {initials}
         </div>
 
         <div className="flex flex-col">
-          <p className="font-semibold text-gray-800">
-            {user.name}
-          </p>
+          <p className="font-semibold text-gray-800">{user.name}</p>
           <p className="text-sm text-gray-500 truncate max-w-[160px]">
             {user.email}
           </p>
@@ -82,7 +83,6 @@ export default function ProfileDropdown({ user, onClose }: Props) {
 
       {/* ⚙️ Actions */}
       <div className="flex flex-col gap-1 text-sm">
-
         <button
           className="flex items-center gap-3 px-3 py-2 rounded-lg
                      hover:bg-purple-50
