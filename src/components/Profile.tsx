@@ -50,7 +50,7 @@ export default function ProfileDropdown({ user, onClose }: Props) {
   return (
     <div
       className="w-72 rounded-2xl 
-           bg-white/80 backdrop-blur-lg
+           mainColor backdrop-blur-lg
            border border-purple-100
            shadow-2xl 
            p-5 space-y-4 
