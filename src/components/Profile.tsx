@@ -60,7 +60,7 @@ export default function ProfileDropdown({ user, onClose }: Props) {
       <div className="flex items-center gap-3 pb-4 border-b">
         <div
           className="w-12 h-12 rounded-full 
-                        bg-purple-500 text-white
+                        bg-mainColor text-white
                         flex items-center justify-center 
                         font-semibold text-lg"
         >
