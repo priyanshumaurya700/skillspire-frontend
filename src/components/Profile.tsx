@@ -58,7 +58,7 @@ export default function ProfileDropdown({ user, onClose }: Props) {
       {/* 👤 User Info */}
       <div className="flex items-center gap-3 pb-4 border-b">
         <div className="w-12 h-12 rounded-full 
-                        maincolor 
+                        bg-purple-500 text-white
                         flex items-center justify-center 
                         font-semibold text-lg">
           {initials}
