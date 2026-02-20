@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export const ViewProfilePage = () => {
+export default function ViewProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
 
   const user = {
