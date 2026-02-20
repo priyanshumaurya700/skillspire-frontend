@@ -20,7 +20,7 @@ export default function ViewProfilePage() {
     }
   }, []);
 
-  if (!user || !user.role) return <div>Loading...</div>;
+  if (!user) return <div>Loading...</div>;
 
   return (
     <div className="p-6">
