@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 import { FiUser, FiSettings, FiLogOut } from "react-icons/fi";
+import { ViewProfilePage } from "./viewProfile/page";
+import { useRouter } from "next/navigation";
 
 interface Props {
   user: any;
@@ -17,6 +19,8 @@ export default function ProfileDropdown({ user, onClose }: Props) {
     document.addEventListener("keydown", handleEsc);
     return () => document.removeEventListener("keydown", handleEsc);
   }, [onClose]);
+
+  const router = useRouter();
 
   // Loading Skeleton
   if (!user) {
@@ -88,6 +92,7 @@ export default function ProfileDropdown({ user, onClose }: Props) {
                      hover:bg-purple-50
                      hover:textMainColor
                      transition-all duration-200 text-gray-700"
+          onClick={() => router.push("/viewProfile")}
         >
           <FiUser size={16} />
           View Profile
