@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { FiUser, FiSettings, FiLogOut } from "react-icons/fi";
-import { ViewProfilePage } from "../app/viewProfile/page";
 import { useRouter } from "next/navigation";
 
 interface Props {

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 
 export const ViewProfilePage = () => {
@@ -20,7 +22,6 @@ export const ViewProfilePage = () => {
 
       {/* Profile Card */}
       <div className="bg-white rounded-2xl shadow-lg p-8">
-        
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
           <div>
