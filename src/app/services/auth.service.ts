@@ -9,9 +9,5 @@ export const register = (data: any) => {
 };
 
 export const userProfile = (token: string) => {
-  return api.get("/api/users/profile", {
-    headers:{
-      Authorization: `Bearer ${token}`,
-    }
-  });
+  return api.get("/api/users/profile");
 };

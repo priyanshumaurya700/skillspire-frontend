@@ -8,11 +8,14 @@ export const api = axios.create({
   baseURL: API,
 });
 
-export const token =
-  typeof window !== "undefined" ? localStorage.getItem("token") : null;
+api.interceptors.request.use((config) => {
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
 
-if (token) {
-  api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-} else {
-  delete api.defaults.headers.common["Authorization"];
-}
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  }
+
+  return config;
+});

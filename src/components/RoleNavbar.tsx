@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { userProfile } from "@/app/services/auth.service";
 import ProfileDropdown from "./Profile";
+import { token } from "@/app/services/api";
 // import ProfileDropdown from "./ProfileDropdown";
 
 interface RoleNavbarProps {
@@ -28,7 +29,7 @@ export default function RoleNavbar({ navLinks }: RoleNavbarProps) {
 
     const loadProfile = async () => {
       try {
-        const response = await userProfile();
+        const response = await userProfile(token);
         setUser(response?.data);
       } catch (error) {
         console.error(error);
