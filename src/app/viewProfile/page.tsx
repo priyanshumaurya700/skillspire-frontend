@@ -9,7 +9,7 @@ export default function ViewProfilePage() {
 
   useEffect(() => {
     // Example: localStorage se fetch
-    const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+    const storedUser = JSON.parse(localStorage.getItem("role") || "{}");
     setUser(storedUser);
   }, []);
 
