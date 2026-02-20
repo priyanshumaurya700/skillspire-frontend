@@ -8,7 +8,7 @@ export const register = (data: any) => {
   return api.post("/api/users/register", data);
 };
 
-export const userProfile = () => {
+export const userProfile = (token: string) => {
   return api.get("/api/users/profile", {
     headers:{
       Authorization: `Bearer ${token}`,

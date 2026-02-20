@@ -3,6 +3,7 @@
 import StudentProfile from "@/components/dashboard/student/StudentProfile";
 import TeacherProfile from "@/components/dashboard/teacher/TeacherProfile";
 import { useEffect, useState } from "react";
+import { userProfile } from "../services/auth.service";
 interface User {
   name: string;
   email: string;
@@ -13,11 +14,21 @@ export default function ViewProfilePage() {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // Example: localStorage se fetch
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    const fetchUser = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("No token found");
+        return;
+      }
+
+      try {
+        const res = await userProfile(token);
+        setUser(res.data);
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    };
+    fetchUser();
   }, []);
 
   if (!user) return <div>Loading...</div>;
