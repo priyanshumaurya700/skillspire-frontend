@@ -23,7 +23,7 @@ export default function ViewProfilePage() {
       }
 
       try {
-        const res = await userProfile(token);
+        const res = await userProfile();
         setUser(res.data);
       } catch (error) {
         console.error("Error fetching user profile:", error);

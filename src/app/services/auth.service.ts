@@ -8,6 +8,6 @@ export const register = (data: any) => {
   return api.post("/api/users/register", data);
 };
 
-export const userProfile = (token: string) => {
+export const userProfile = () => {
   return api.get("/api/users/profile");
 };
