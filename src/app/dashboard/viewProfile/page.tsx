@@ -1,9 +1,9 @@
 "use client";
 
+import { userProfile } from "@/app/services/auth.service";
 import StudentProfile from "@/components/dashboard/student/StudentProfile";
 import TeacherProfile from "@/components/dashboard/teacher/TeacherProfile";
 import { useEffect, useState } from "react";
-import { userProfile } from "../services/auth.service";
 
 interface User {
   name: string;
