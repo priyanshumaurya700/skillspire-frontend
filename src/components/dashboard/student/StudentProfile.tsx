@@ -167,7 +167,7 @@ export default function StudentProfile({ user }: any) {
             {activities.map((activity, index) => (
               <li key={index} className="relative">
                 <span className="absolute -left-[9px] top-1 w-3 h-3 rounded-full mainColor"></span>
-                <p className="text-sm text-gray-700">{activity}</p>
+                <p className="text-sm text-gray-700 pl-2">{activity}</p>
               </li>
             ))}
           </ul>
