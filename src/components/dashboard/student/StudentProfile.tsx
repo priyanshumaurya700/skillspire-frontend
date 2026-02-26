@@ -42,20 +42,36 @@ export default function StudentProfile({ user }: any) {
 
   const badges = ["🏆 Fast Learner", "🔥 Consistent", "🎯 Top Performer"];
 
-  return (
-    <div className="max-w-7xl mx-auto p-6 space-y-6">
+  const kpis = [
+    { title: "Courses", value: 5 },
+    { title: "Certificates", value: 2 },
+    { title: "Learning Hours", value: 120 },
+    { title: "Global Rank", value: "#142" },
+  ];
 
-      {/* 🔷 Top Section */}
-      <div className="grid md:grid-cols-3 gap-6">
+  return (
+    <div className="max-w-7xl mx-auto p-6 space-y-8">
+
+      {/* 🔥 KPI CARDS */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {kpis.map((item, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.05 }}
+            className="bg-white p-6 rounded-2xl shadow-md text-center"
+          >
+            <p className="text-gray-500 text-sm">{item.title}</p>
+            <h3 className="text-2xl font-bold mt-2">{item.value}</h3>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* 🔷 Profile + AI Insight */}
+      <div className="grid md:grid-cols-2 gap-6">
 
         {/* Profile Card */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-2xl shadow-lg p-6 col-span-2 flex items-center gap-6"
-        >
-          <div className="w-20 h-20 rounded-full mainColor text-white 
-                          flex items-center justify-center text-2xl font-bold">
+        <div className="bg-white p-6 rounded-2xl shadow-lg flex items-center gap-6">
+          <div className="w-20 h-20 rounded-full mainColor text-white flex items-center justify-center text-2xl font-bold">
             {initials}
           </div>
 
@@ -66,35 +82,21 @@ export default function StudentProfile({ user }: any) {
               Student
             </span>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Progress Card */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="bg-white rounded-2xl shadow-lg p-6"
-        >
-          <h3 className="font-semibold mb-4">Overall Progress</h3>
-
-          <div className="w-full bg-gray-200 rounded-full h-4">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 1 }}
-              className="h-4 rounded-full mainColor"
-            />
-          </div>
-
-          <p className="mt-2 text-sm text-gray-500">{progress}% Completed</p>
-        </motion.div>
+        {/* AI Insight */}
+        <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white p-6 rounded-2xl shadow-lg">
+          <h3 className="font-semibold text-lg">AI Performance Insight</h3>
+          <p className="mt-3 text-sm">
+            You are progressing 18% faster than average students. 
+            Completing your current course in next 10 days 
+            can improve your global rank significantly 🚀
+          </p>
+        </div>
       </div>
 
-      {/* 📈 Chart Full Width */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="bg-white p-6 rounded-2xl shadow-lg"
-      >
+      {/* 📈 Chart */}
+      <div className="bg-white p-6 rounded-2xl shadow-lg">
         <h3 className="font-semibold text-lg mb-4">
           Course Completion Trend
         </h3>
@@ -113,17 +115,12 @@ export default function StudentProfile({ user }: any) {
             />
           </LineChart>
         </ResponsiveContainer>
-      </motion.div>
+      </div>
 
-      {/* 🗂 Middle Section Side-by-Side */}
+      {/* 🗂 Courses + Achievements */}
       <div className="grid md:grid-cols-2 gap-6">
 
-        {/* Course List */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="bg-white p-6 rounded-2xl shadow-lg"
-        >
+        <div className="bg-white p-6 rounded-2xl shadow-lg">
           <h3 className="font-semibold text-lg mb-4">Enrolled Courses</h3>
 
           <div className="space-y-4">
@@ -142,14 +139,9 @@ export default function StudentProfile({ user }: any) {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        {/* Achievements */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="bg-white p-6 rounded-2xl shadow-lg"
-        >
+        <div className="bg-white p-6 rounded-2xl shadow-lg">
           <h3 className="font-semibold text-lg mb-4">Achievements</h3>
 
           <div className="flex flex-wrap gap-3">
@@ -162,27 +154,34 @@ export default function StudentProfile({ user }: any) {
               </span>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* 🧾 Activity Timeline Full Width */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="bg-white p-6 rounded-2xl shadow-lg"
-      >
-        <h3 className="font-semibold text-lg mb-4">Recent Activity</h3>
+      {/* 🧾 Activity + Notifications */}
+      <div className="grid md:grid-cols-2 gap-6">
 
-        <ul className="space-y-4 border-l-2 border-purple-200 pl-4">
-          {activities.map((activity, index) => (
-            <li key={index} className="relative">
-              <span className="absolute -left-[9px] top-1 w-3 h-3 rounded-full mainColor"></span>
-              <p className="text-sm text-gray-700">{activity}</p>
-            </li>
-          ))}
-        </ul>
-      </motion.div>
+        <div className="bg-white p-6 rounded-2xl shadow-lg">
+          <h3 className="font-semibold text-lg mb-4">Recent Activity</h3>
 
+          <ul className="space-y-4 border-l-2 border-purple-200 pl-4">
+            {activities.map((activity, index) => (
+              <li key={index} className="relative">
+                <span className="absolute -left-[9px] top-1 w-3 h-3 rounded-full mainColor"></span>
+                <p className="text-sm text-gray-700">{activity}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="bg-white p-6 rounded-2xl shadow-lg">
+          <h3 className="font-semibold text-lg mb-4">Notifications</h3>
+          <ul className="space-y-3 text-sm text-gray-600">
+            <li>📢 New course available: Advanced TypeScript</li>
+            <li>🎯 Complete UI/UX course to earn new badge</li>
+            <li>📅 Live webinar on React Performance (Friday)</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
