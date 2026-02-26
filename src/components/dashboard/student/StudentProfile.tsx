@@ -26,6 +26,13 @@ export default function StudentProfile({ user }: any) {
     { name: "Mar", progress: 50 },
     { name: "Apr", progress: 65 },
     { name: "May", progress: 78 },
+    { name: "Jun", progress: 78 },
+    { name: "Jul", progress: 78 },
+    { name: "Aug", progress: 78 },
+    { name: "Sep", progress: 78 },
+    { name: "Oct", progress: 78 },
+    { name: "Nov", progress: 78 },
+    { name: "Dec", progress: 78 },
   ];
 
   const courses = [
