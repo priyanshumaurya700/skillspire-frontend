@@ -91,7 +91,7 @@ export default function ProfileDropdown({ user, onClose }: Props) {
                      hover:bg-purple-50
                      hover:textMainColor
                      transition-all duration-200 text-gray-700"
-          onClick={() => router.push("/viewProfile")}
+          onClick={() => router.push("/dashboard/viewProfile")}
         >
           <FiUser size={16} />
           View Profile
