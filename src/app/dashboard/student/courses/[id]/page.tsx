@@ -29,7 +29,7 @@ const CoursesId = () => {
   }
 
   if (!course) {
-    return <div className="p-6 text-center text-mainColor">Course Loading...</div>;
+    return <div className="p-6 text-center textMainColor">Course Loading...</div>;
   }
 
   return (
