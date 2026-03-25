@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 type Topic = {
   title: string;
@@ -25,7 +25,10 @@ export default function CoursePage({ params }: CoursePageProps) {
   const [chapterName, setChapterName] = useState("");
   const [topicTitle, setTopicTitle] = useState("");
   const [video, setVideo] = useState<File | null>(null);
-  const [currentChapterIndex, setCurrentChapterIndex] = useState<number | null>(null);
+  const [currentChapterIndex, setCurrentChapterIndex] = useState<number | null>(
+    null,
+  );
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const startNewChapter = () => {
     if (!chapterName) return alert("Enter chapter name");
@@ -68,7 +71,6 @@ export default function CoursePage({ params }: CoursePageProps) {
 
   return (
     <div className="p-4 md:p-6 max-w-6xl mx-auto">
-      
       {/* Header */}
       <h1 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">
         📚 Manage Course
@@ -103,7 +105,7 @@ export default function CoursePage({ params }: CoursePageProps) {
       {currentChapterIndex !== null && (
         <div className="bg-white border rounded-xl p-5 shadow-sm mb-6">
           <h2 className="text-lg font-semibold mb-3 text-gray-700">
-            📖 Adding Topics to: 
+            📖 Adding Topics to:
             <span className="text-blue-600 ml-2">
               {chapters[currentChapterIndex]?.name}
             </span>
@@ -120,6 +122,7 @@ export default function CoursePage({ params }: CoursePageProps) {
             <input
               type="file"
               accept="video/*"
+              ref={fileInputRef}
               onChange={(e) => setVideo(e.target.files?.[0] || null)}
               className="border rounded-lg p-2 w-full"
             />
@@ -127,7 +130,12 @@ export default function CoursePage({ params }: CoursePageProps) {
             <div className="flex gap-2">
               <button
                 onClick={addTopic}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg w-full"
+                disabled={!topicTitle || !video}
+                className={`px-4 py-2 rounded-lg w-full text-white ${
+                  !topicTitle || !video
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-purple-600 hover:bg-purple-700"
+                }`}
               >
                 ➕ Add
               </button>
@@ -169,16 +177,11 @@ export default function CoursePage({ params }: CoursePageProps) {
 
               {/* Topics */}
               {chapter.topics.length === 0 ? (
-                <p className="text-sm text-gray-400">
-                  No topics added
-                </p>
+                <p className="text-sm text-gray-400">No topics added</p>
               ) : (
                 <div className="space-y-3">
                   {chapter.topics.map((topic, j) => (
-                    <div
-                      key={j}
-                      className="border rounded-lg p-3 bg-gray-50"
-                    >
+                    <div key={j} className="border rounded-lg p-3 bg-gray-50">
                       <p className="font-medium text-gray-700">
                         🎬 {topic.title}
                       </p>
