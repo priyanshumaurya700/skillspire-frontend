@@ -29,6 +29,7 @@ export default function CoursePage({ params }: CoursePageProps) {
     null,
   );
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [fileKey, setFileKey] = useState(0);
 
   const startNewChapter = () => {
     if (!chapterName) return alert("Enter chapter name");
@@ -57,6 +58,12 @@ export default function CoursePage({ params }: CoursePageProps) {
     setChapters(updated);
     setTopicTitle("");
     setVideo(null);
+    setFileKey((prev) => prev + 1);
+
+    // ✅ IMPORTANT: Reset file input UI
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   const completeChapter = () => {
@@ -120,6 +127,7 @@ export default function CoursePage({ params }: CoursePageProps) {
             />
 
             <input
+              key={fileKey}
               type="file"
               accept="video/*"
               ref={fileInputRef}
