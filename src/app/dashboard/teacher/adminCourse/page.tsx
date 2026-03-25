@@ -124,7 +124,7 @@ const adminCourse = () => {
                 <div className="flex gap-2 bg-gray-50 p-2 rounded-lg">
                   <button
                     onClick={() =>
-                      router.push(`/teacher/courses/${course._id}`)
+                      router.push(`/dashboard/teacher/courses/${course._id}`)
                     }
                     className="flex-1 flex items-center justify-center gap-1
                            mainColor text-white border border-mainColor
