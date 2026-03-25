@@ -84,7 +84,7 @@ const CoursesId = () => {
 
         <div className="mt-6">
           <button className="w-full mainColor text-white py-2 px-4 rounded-lg transition">
-            Enroll Now
+            Purchase Course
           </button>
         </div>
       </div>

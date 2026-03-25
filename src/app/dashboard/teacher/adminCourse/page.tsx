@@ -3,6 +3,7 @@ import { getAllCourses } from "@/app/services/course.services";
 import { assignedCourseGet } from "@/app/services/teacher";
 import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface AssignedCourse {
@@ -21,6 +22,8 @@ const adminCourse = () => {
   const [courses, setCourses] = useState<AssignedCourse[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     fetchAssignedCourses();
@@ -71,8 +74,8 @@ const adminCourse = () => {
               {/* IMAGE */}
               <div className="flex justify-center pt-6">
                 <Image
-                  src={course.courseId?.logo || 'No title'}
-                  alt={course.courseId.title || 'Course Logo'}
+                  src={course.courseId?.logo || "No title"}
+                  alt={course.courseId.title || "Course Logo"}
                   width={112}
                   height={112}
                   className="h-28 w-28 rounded-full object-cover 
@@ -120,11 +123,14 @@ const adminCourse = () => {
               <div className="px-4 pb-4">
                 <div className="flex gap-2 bg-gray-50 p-2 rounded-lg">
                   <button
+                    onClick={() =>
+                      router.push(`/teacher/courses/${course._id}`)
+                    }
                     className="flex-1 flex items-center justify-center gap-1
                            mainColor text-white border border-mainColor
                            py-2 rounded-md text-sm"
                   >
-                    Enroll Course
+                    Manage Course
                   </button>
                 </div>
               </div>
