@@ -1,5 +1,12 @@
 "use client";
-export default function CoursePage({ params }) {
+
+type CoursePageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default function CoursePage({ params }:CoursePageProps) {
   const { id } = params;
   return (
     <div className="p-6">
