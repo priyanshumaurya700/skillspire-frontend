@@ -1,3 +1,4 @@
+"use client";
 export default function CoursePage({ params }) {
   const { id } = params;
   return (
