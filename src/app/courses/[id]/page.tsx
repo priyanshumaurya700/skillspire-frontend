@@ -43,7 +43,7 @@ const CoursesId = () => {
     }
 
     // ✅ Logged in → continue purchase
-    router.push(`/checkout/${id}`);
+    // router.push(`/checkout/${id}`);
   };
 
   if (!course) {
