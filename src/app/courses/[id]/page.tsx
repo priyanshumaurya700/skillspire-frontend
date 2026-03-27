@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { getCourseById } from "@/app/services/course.services";
+import { useAuthModal } from "@/app/context/AuthModalContext";
 
 interface Course {
   _id: string;
@@ -18,6 +19,7 @@ const CoursesId = () => {
   const router = useRouter();
   const { id } = useParams<{ id: string }>();
   const [course, setCourse] = useState<Course | null>(null);
+  const { setShowLoginModal } = useAuthModal();
 
   useEffect(() => {
     if (!id) return;
@@ -35,15 +37,15 @@ const CoursesId = () => {
 
   const handlePurchase = () => {
     const token = localStorage.getItem("token");
-    console.log("Token +++++", token);
 
     if (!token) {
-      router.push("/login");
+      // router.push("/login");
+      setShowLoginModal(true);
       return;
     }
 
     // ✅ Logged in → continue purchase
-    // router.push(`/checkout/${id}`);
+    router.push(`/checkout/${id}`);
   };
 
   if (!course) {

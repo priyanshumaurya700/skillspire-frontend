@@ -6,13 +6,18 @@ import { usePathname, useRouter } from "next/navigation";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import { showAlert } from "@/sweetalert/ShowAlert";
 import { login, register, userProfile } from "@/app/services/auth.service";
+import { useAuthModal } from "@/app/context/AuthModalContext";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const {
+    showLoginModal,
+    setShowLoginModal,
+    showRegisterModal,
+    setShowRegisterModal,
+  } = useAuthModal();
 
   const isActive = (path: string) => pathname === path;
 
@@ -99,8 +104,6 @@ export default function Navbar() {
       });
     }
   };
-
- 
 
   return (
     <>

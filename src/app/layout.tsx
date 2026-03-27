@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
+import { AuthModalProvider } from "./context/AuthModalContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -11,8 +12,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "SkillSpire | Empowering Your Learning Journey",
-  description:
-    "SkillSpire is your trusted partner in digital learning.",
+  description: "SkillSpire is your trusted partner in digital learning.",
 };
 
 export default function RootLayout({
@@ -23,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
-        <ClientLayout>{children}</ClientLayout>
+        <ClientLayout>
+          <AuthModalProvider>{children}</AuthModalProvider>
+        </ClientLayout>
       </body>
     </html>
   );
