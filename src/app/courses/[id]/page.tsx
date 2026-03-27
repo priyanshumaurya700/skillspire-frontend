@@ -22,6 +22,13 @@ const CoursesId = () => {
   useEffect(() => {
     if (!id) return;
 
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
     getCourseById(id)
       .then((res) => setCourse(res.data))
       .catch((error: any) => {
@@ -34,7 +41,9 @@ const CoursesId = () => {
   }, [id]);
 
   if (!course) {
-    return <div className="p-6 text-center textMainColor">Course Loading...</div>;
+    return (
+      <div className="p-6 text-center textMainColor">Course Loading...</div>
+    );
   }
 
   return (
@@ -89,7 +98,7 @@ const CoursesId = () => {
 
         <div className="mt-6">
           <button className="w-full mainColor text-white py-2 px-4 rounded-lg transition">
-            Buy Now
+            Purchase Course
           </button>
         </div>
       </div>
