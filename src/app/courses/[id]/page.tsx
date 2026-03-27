@@ -22,13 +22,6 @@ const CoursesId = () => {
   useEffect(() => {
     if (!id) return;
 
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      router.push("/login");
-      return;
-    }
-
     getCourseById(id)
       .then((res) => setCourse(res.data))
       .catch((error: any) => {
@@ -39,6 +32,18 @@ const CoursesId = () => {
         }
       });
   }, [id]);
+
+  const handlePurchase = () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    // ✅ Logged in → continue purchase
+    router.push(`/checkout/${id}`);
+  };
 
   if (!course) {
     return (
@@ -97,7 +102,10 @@ const CoursesId = () => {
         </ul>
 
         <div className="mt-6">
-          <button className="w-full mainColor text-white py-2 px-4 rounded-lg transition">
+          <button
+            onClick={handlePurchase}
+            className="w-full mainColor text-white py-2 px-4 rounded-lg transition"
+          >
             Purchase Course
           </button>
         </div>
