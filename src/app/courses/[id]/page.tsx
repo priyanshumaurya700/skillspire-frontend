@@ -35,6 +35,7 @@ const CoursesId = () => {
 
   const handlePurchase = () => {
     const token = localStorage.getItem("token");
+    console.log("Token +++++", token);
 
     if (!token) {
       router.push("/login");
